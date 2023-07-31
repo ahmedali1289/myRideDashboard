@@ -13,8 +13,8 @@ export class LayoutService {
       sidebar_type: 'default-sidebar'
     },
     color: {
-      primary_color: '#7366ff', 
-      secondary_color: '#f73164'
+      primary_color: '#21458c', 
+      secondary_color: '#39a178'
     }
   }
 

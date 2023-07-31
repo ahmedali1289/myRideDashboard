@@ -1,26 +1,39 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
-import { AgmCoreModule } from '@agm/core';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DefaultComponent } from './default/default.component';
-import { EcommerceComponent } from './ecommerce/ecommerce.component';
+import { HomeComponent } from './home/home.component';
+import { TermsConditionComponent } from './terms-condition/terms-condition.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { CountToModule } from 'angular-count-to';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { NotificationComponent } from './notification/notification.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ImageModule } from 'src/app/image/image.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
-    DefaultComponent,
-     EcommerceComponent ,
+    HomeComponent,
+    TermsConditionComponent,
+    PrivacyPolicyComponent,
+    AboutUsComponent,
+    NotificationComponent,
+    SettingsComponent,
     ],
   imports: [
     CommonModule,
     SharedModule,
     NgbModule,
     FormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: ''
-    }),
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    CountToModule,
+    ReactiveFormsModule,
+    CKEditorModule,
+    ImageModule,
+    NgxPaginationModule
   ]
 })
 export class DashboardModule { }

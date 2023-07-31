@@ -17,8 +17,8 @@
 @import "utils/variables";
 
 :root {
-    --theme-deafult: #7366ff;
-    --theme-secondary: #f73164;
+    --theme-deafult: #21458c;
+    --theme-secondary: #39a178;
 }
 
 /* ---------------------
@@ -134,3 +134,5 @@
 @import "layout/rtl.scss";
 @import "layout/box-layout.scss";
 
+// fontawesome icons
+$font-awesome: FontAwesome;

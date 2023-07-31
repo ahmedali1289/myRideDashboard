@@ -1,38 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AuthService } from '../../shared/services/firebase/auth.service';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpService } from 'src/app/shared/services/http.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   public show: boolean = false;
-  public loginForm: FormGroup;
   public errorMessage: any;
-
-  constructor(public authService: AuthService, private fb: FormBuilder , private router:Router) {
-      this.loginForm = this.fb.group({
-        email: ['test@gmail.com', [Validators.required, Validators.email]],
-        password: ['test123', Validators.required]
-      });
+  public loginForm: any = this.fb.group({
+    email: ['admin@gmail.com', [Validators.required, Validators.email]],
+    password: ['123456789', Validators.required],
+  });
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private http: HttpService,
+  ) {
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   showPassword() {
     this.show = !this.show;
   }
-  // Simple Login
   login() {
-    let email1= this.loginForm.value['email']
-    let pass=this.loginForm.value['password']
-    localStorage.setItem('user',this.loginForm.value['email'])
-    this.authService.SignIn(email1, pass);
-  this.authService.SignIn(this.loginForm.value['email'],this.loginForm.value['password'])
+    this.http.post('auth/login', this.loginForm.value, false).subscribe((res: any) => {
+      console.log(res, "helloresss");
+      localStorage.setItem('token', JSON.stringify(res?.access_token))
+      localStorage.setItem('user_id', JSON.stringify(res?.user_id))
+      this.router.navigate(['/users'])
+    })
   }
-
 }

@@ -1,5 +1,5 @@
 let primary = localStorage.getItem('primary_color') || '#7366ff';
-let secondary = localStorage.getItem('secondary_color') || '#f73164';
+let secondary = localStorage.getItem('secondary_color') || '#39a178';
 
 export const todayTotalSale = {
     series: [{

@@ -13,10 +13,10 @@ import { LayoutService } from '../../services/layout.service';
 })
 export class SidebarComponent {
 
-  public iconSidebar;
+  public iconSidebar:any;
   public menuItems: Menu[];
 
-  public menuItem:{};
+  public menuItem:any;
   public url: any;
   public fileurl: any;
 
@@ -28,24 +28,22 @@ export class SidebarComponent {
 
   constructor(private router: Router, public navServices: NavService,
     public layout: LayoutService) {
-    this.navServices.items.subscribe(menuItems => {    
+    this.navServices.items.subscribe((menuItems:any):any => {    
       this.menuItems = menuItems;
       this.menuItem=menuItems;
-      console.log(this.menuItem,'yer');
-      
-      this.router.events.subscribe((event) => {
+      this.router.events.subscribe((event:any):any => {
         if (event instanceof NavigationEnd) {
-          menuItems.filter(items => {
+          menuItems.filter((items:any):any => {
             if (items.path === event.url) {
               this.setNavActive(items);
             }
             if (!items.children) { return false; }
-            items.children.filter(subItems => {
+            items.children.filter((subItems:any):any => {
               if (subItems.path === event.url) {
                 this.setNavActive(subItems);
               }
               if (!subItems.children) { return false; }
-              subItems.children.filter(subSubItems => {
+              subItems.children.filter((subSubItems:any):any => {
                 if (subSubItems.path === event.url) {
                   this.setNavActive(subSubItems);
                 }
@@ -68,7 +66,7 @@ export class SidebarComponent {
 
   // Active Nave state
   setNavActive(item) {
-    this.menuItems.filter(menuItem => {
+    this.menuItems.filter((menuItem:any):any => {
       if (menuItem !== item) {
         menuItem.active = false;
       }
@@ -76,7 +74,7 @@ export class SidebarComponent {
         menuItem.active = true;
       }
       if (menuItem.children) {
-        menuItem.children.filter(submenuItems => {
+        menuItem.children.filter((submenuItems:any):any => {
           if (submenuItems.children && submenuItems.children.includes(item)) {
             menuItem.active = true;
             submenuItems.active = true;
@@ -87,14 +85,14 @@ export class SidebarComponent {
   }
 
   // Click Toggle menu-bar function 
-  toggletNavActive(item) {
+  toggletNavActive(item:any):any {
     if (!item.active) {
-      this.menuItems.forEach(a => {
+      this.menuItems.forEach((a:any):any => {
         if (this.menuItems.includes(item)) {
           a.active = false;
         }
         if (!a.children) { return false; }
-        a.children.forEach(b => {
+        a.children.forEach((b:any):any => {
           if (a.children.includes(item)) {
             b.active = false;
           }

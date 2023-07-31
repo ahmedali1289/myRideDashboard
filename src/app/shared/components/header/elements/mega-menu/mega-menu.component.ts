@@ -13,7 +13,6 @@ export class MegaMenuComponent implements OnInit {
   
   constructor(public navServices: NavService) { 
     this.navServices.megaItems.subscribe(megaItems => this.megaItems = megaItems);
-    this.navServices.levelmenuitems.subscribe(levelmenuitems => this.levelmenuitems = levelmenuitems);
   }
 
   ngOnInit() {
@@ -38,12 +37,12 @@ export class MegaMenuComponent implements OnInit {
   // Click Toggle menu
   toggletNavActive(item) {
     if (!item.active) {
-      this.megaItems.forEach(a => {
+      this.megaItems.forEach((a:any):any => {
         if (this.megaItems.includes(item)) {
           a.active = false;
         }
         if (!a.children) { return false; }
-        a.children.forEach(b => {
+        a.children.forEach((b:any):any => {
           if (a.children.includes(item)) {
             b.active = false;
           }

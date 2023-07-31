@@ -1,0 +1,111 @@
+<app-breadcrumb
+  [title]="'Users'"
+  [items]="['Dashboard']"
+  [active_item]="'Users'"
+  icon="users"
+></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 btnPadding">
+      <div class="card">
+        <div class="card-header">
+          <h5>All Users</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div
+              class="col-sm-6 d-flex justify-content-start align-items-center"
+            >
+              <div class="searchField mt-1 w-100">
+                <input
+                  type="text"
+                  [(ngModel)]="searchInput"
+                  placeholder="Search"
+                  class="w-100 white"
+                />
+                <i class="fa fa-search"></i>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="order-history table-responsive wishlist">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Id</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container
+                      *ngIf="
+                        (requestsUsers | filter : searchInput)?.length;
+                        else noData
+                      "
+                    >
+                      <tr
+                        *ngFor="
+                          let i = index;
+                          let item;
+                          of: requestsUsers
+                            | filter : searchInput
+                            | paginate
+                              : {
+                                  itemsPerPage: 5,
+                                  currentPage: duePage,
+                                  totalItems: total
+                                }
+                        "
+                      >
+                        <th scope="row">{{ item?.id }}</th>
+                        <td>{{ item?.user?.fname}} {{item?.user?.lname}}</td>
+                        <td>{{ item?.user?.email ? item?.user?.email : "N/A" }}</td>
+                        <td
+                          class="d-flex justify-content-center align-items-center"
+                        >
+                          <button
+                            class="btn btn-secondary mr-3"
+                            (click)="userDetail(item?.id)"
+                          >
+                            <i class="fa fa-check mlicon"></i>
+                          </button>
+                          <button
+                            class="btn btn-danger"
+                            (click)="userDetail(item?.id)"
+                          >
+                            <i class="fa fa-times mlicon"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                    <ng-template #noData>
+                      <tr *ngIf="requestsUsers?.length">
+                        <td colspan="5" class="text-center white">
+                          No Matching Data Available
+                        </td>
+                      </tr>
+                    </ng-template>
+                    <tr *ngIf="!requestsUsers?.length">
+                      <td class="text-center white" colspan="5">
+                        No data available
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div
+              class="col-sm-12 d-flex justify-content-end"
+              *ngIf="requestsUsers?.length"
+            >
+              <pagination-controls (pageChange)="duePage = $event">
+              </pagination-controls>
+            </div>
+          </div>
+        </div>
+        <!-- Container-fluid Ends-->
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { NavService } from '../../services/nav.service';
 import { LayoutService } from '../../services/layout.service';
+import { HttpService } from '../../services/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +16,8 @@ export class HeaderComponent implements OnInit {
   public dark: boolean = this.layout.config.settings.layout_version == 'dark-only' ? true : false;
 
   constructor(public layout: LayoutService,
+    private http:HttpService,
+    private router: Router,
     public navServices: NavService, 
     @Inject(DOCUMENT) private document: any
   ) {
@@ -32,9 +36,6 @@ export class HeaderComponent implements OnInit {
   layoutToggle() {
     this.dark = !this.dark;
     this.layout.config.settings.layout_version = this.dark ? 'dark-only' : 'light';
-  }
-  languageToggle() {
-    this.navServices.language = !this.navServices.language;
   }
   toggleFullScreen() {
     this.navServices.fullScreen = !this.navServices.fullScreen;
@@ -66,6 +67,12 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
-
+  async logout(){
+    await this.http.post('admin/logout', {}, true).subscribe((res: any) => {
+      console.log(res);
+      localStorage.clear();
+      this.router.navigateByUrl('auth/login');
+    });
+  }
 
 }

@@ -1,36 +1,50 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DefaultComponent } from './default/default.component';
-import { EcommerceComponent } from './ecommerce/ecommerce.component';
+// import { HomeComponent } from './home/home.component';
 import { LoginComponent } from 'src/app/auth/login/login.component';
-import { SampleComponent } from '../others/sample/sample.component';
-
+import { TermsConditionComponent } from './terms-condition/terms-condition.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { SettingsComponent } from './settings/settings.component';
+import { NotificationComponent } from './notification/notification.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
+      // {
+      //   path: 'home',
+      //   component: HomeComponent,
+      // },
       {
-        path:'login',
-        component:LoginComponent
+        path: 'terms&condition',
+        component: TermsConditionComponent,
       },
       {
-        path: 'default',
-        component: DefaultComponent
+        path: 'privacy_policy',
+        component: PrivacyPolicyComponent,
       },
       {
-        path:'ecommerce',
-        component:EcommerceComponent
+        path: 'about_us',
+        component: AboutUsComponent,
       },
       {
-        path:'sample',
-        component:SampleComponent
+        path: 'notifications',
+        component: NotificationComponent,
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'notifications',
       },
     ],
-  }
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

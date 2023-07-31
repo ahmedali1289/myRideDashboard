@@ -6,32 +6,34 @@ import { FullComponent } from "./shared/components/layout/full/full.component";
 import { full } from "./shared/routes/full.routes";
 import { content } from "./shared/routes/routes";
 import { AdminGuard } from './shared/guard/admin.guard';
+import { SecureInnerPagesGuard } from './shared/guard/SecureInnerPagesGuard.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard/default',
+    redirectTo: 'users',
     pathMatch: 'full'
   },
   {
     path: 'auth/login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [AdminGuard],
   },
   {
     path: '',
     component: ContentComponent,
-    canActivate: [AdminGuard],
+    canActivate: [SecureInnerPagesGuard],
     children: content
   },
   {
     path: '',
     component: FullComponent,
-    canActivate: [AdminGuard],
+    canActivate: [SecureInnerPagesGuard],
     children: full
   },
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'users'
   }
 ];
 
@@ -39,7 +41,7 @@ const routes: Routes = [
   imports: [[RouterModule.forRoot(routes, {
     anchorScrolling: 'enabled',
     scrollPositionRestoration: 'enabled',
-    relativeLinkResolution: 'legacy'
+    enableTracing: true 
 })],
 ],
   exports: [RouterModule]
