@@ -15,6 +15,7 @@ import { AdminGuard } from './shared/guard/admin.guard';
 import { ImageModule } from './image/image.module';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthInterceptorService } from './shared/services/auth-interceptor.servi
     LoadingBarRouterModule,
     LoadingBarModule,
     ImageModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    SharedModule
   ],
   providers: [AdminGuard, SecureInnerPagesGuard,
     {
