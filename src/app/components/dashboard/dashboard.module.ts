@@ -14,6 +14,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ImageModule } from 'src/app/image/image.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RideComponent } from './ride/ride.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -22,6 +23,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AboutUsComponent,
     NotificationComponent,
     SettingsComponent,
+    RideComponent,
     ],
   imports: [
     CommonModule,

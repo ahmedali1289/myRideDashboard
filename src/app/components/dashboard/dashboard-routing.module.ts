@@ -7,15 +7,17 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NotificationComponent } from './notification/notification.component';
+import { HomeComponent } from './home/home.component';
+import { RideComponent } from './ride/ride.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      // {
-      //   path: 'home',
-      //   component: HomeComponent,
-      // },
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
       {
         path: 'terms&condition',
         component: TermsConditionComponent,
@@ -35,6 +37,10 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent,
+      },
+      {
+        path: 'ride',
+        component: RideComponent,
       },
       {
         path: '**',

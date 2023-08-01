@@ -27,11 +27,11 @@ export class LoginComponent implements OnInit {
     this.show = !this.show;
   }
   login() {
-    this.http.post('auth/login', this.loginForm.value, false).subscribe((res: any) => {
-      console.log(res, "helloresss");
-      localStorage.setItem('token', JSON.stringify(res?.access_token))
-      localStorage.setItem('user_id', JSON.stringify(res?.user_id))
-      this.router.navigate(['/users'])
-    })
+    // this.http.post('auth/login', this.loginForm.value, false).subscribe((res: any) => {
+      // console.log(res, "helloresss");
+      localStorage.setItem('token', JSON.stringify('res?.access_token'))
+    //   localStorage.setItem('user_id', JSON.stringify(res?.user_id))
+    //   this.router.navigate(['/users'])
+    // })
   }
 }
