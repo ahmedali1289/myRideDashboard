@@ -1,0 +1,136 @@
+<app-breadcrumb [title]="'Promos'" [items]="['Dashboard']" [active_item]="'Promos'"></app-breadcrumb>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 btnPadding">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h5>Promos</h5>
+                    <button class="btn btn-primary" (click)="open(addModal, 'add')">Add Promo</button>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6 d-flex justify-content-start align-items-center">
+                            <div class="searchField mt-1 w-100">
+                                <input type="text" [(ngModel)]="searchInput" placeholder="Search" class="w-100 white" />
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="order-history table-responsive wishlist">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Role</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container *ngIf="
+                        (users | filter : searchInput)?.length;
+                        else noData
+                      ">
+                                            <tr *ngFor="
+                          let i = index;
+                          let item;
+                          of: users
+                            | filter : searchInput
+                            | paginate
+                              : {
+                                  itemsPerPage: 5,
+                                  currentPage: duePage,
+                                  totalItems: total
+                                }
+                        ">
+                                                <th scope="row">{{ item?.id }}</th>
+                                                <td>{{ item?.fname}} {{item?.lname}}</td>
+                                                <td>{{ item?.email ? item?.email : "N/A" }}</td>
+                                                <td>{{ item?.role ? item?.role : "N/A" }}</td>
+                                                <td>
+                                                    <div
+                                                        class="toggle d-flex align-items-center w-100 justify-content-center">
+                                                        <input (change)="stateItem(item, $event)" class="checkBox"
+                                                            type="checkbox" [checked]="
+                                item?.active_status == '1' ? true : false
+                              " [id]="'user' + i" /><label [for]="'user' + i"></label>
+                                                    </div>
+                                                </td>
+                                                <td class="d-flex justify-content-center align-items-center">
+                                                    <button class="btn btn-primary" (click)="userDetail(item?.id)">
+                                                        <i class="fa fa-share mlicon"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </ng-container>
+                                        <ng-template #noData>
+                                            <tr *ngIf="users?.length">
+                                                <td colspan="5" class="text-center white">
+                                                    No Matching Data Available
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                        <tr *ngIf="!users?.length">
+                                            <td class="text-center white" colspan="5">
+                                                No data available
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 d-flex justify-content-end" *ngIf="users?.length">
+                            <pagination-controls (pageChange)="duePage = $event">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-fluid Ends-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modals -->
+<ng-container>
+    <ng-template #addModal let-modal>
+        <div class="modal-body checkoutModal completed">
+            <button class="btn-close" id="checkoutClose" aria-label="Close" (click)="proceed()"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <h5 class="modal-title">{{ state ? "Edit Promo" : "Add Promo" }}</h5>
+            <form [formGroup]="promoForm" class="form">
+                <div class="row mt-4">
+                    <div class="col-lg-6 mt-3">
+                        <label for="" class="text-light mb-3">Coupon Number</label>
+                        <input formControlName="name" type="text" placeholder="Coupon Number" class="text-light w-100" />
+                        <div *ngIf="
+                promoForm.controls.name.invalid &&
+                (promoForm.controls.name.dirty || promoForm.controls.name.touched)
+              ">
+                            <small class="text-danger">Coupon is required</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-3">
+                        <label for="" class="text-light mb-3">Discount</label>
+                        <input formControlName="name" type="text" placeholder="Discount" class="text-light w-100" />
+                        <div *ngIf="
+                promoForm.controls.name.invalid &&
+                (promoForm.controls.name.dirty || promoForm.controls.name.touched)
+              ">
+                            <small class="text-danger">Discount is required</small>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-start">
+            <button class="btn  btn-primary add-btn" [disabled]="promoForm.invalid" (click)="save(true)">
+                Save
+            </button>
+            <button class="btn btn-danger cancel-btn" aria-label="Close" (click)="proceed()">
+                Cancel
+            </button>
+        </div>
+    </ng-template>
+</ng-container>

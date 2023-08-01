@@ -31,13 +31,13 @@
     </div>
     <div class="col-sm-6 col-xl-3 col-lg-6">
       <div class="card o-hidden">
-        <div class="bg-secondary b-r-4 card-body">
+        <div class="bg-danger b-r-4 card-body">
           <div class="media static-top-widget">
             <div class="align-self-center text-center">
-              <app-feather-icons [icon]="'user-plus'"></app-feather-icons>
+              <app-feather-icons [icon]="'key'"></app-feather-icons>
             </div>
             <div class="media-body">
-              <span class="m-0">Search History</span>
+              <span class="m-0">Rides</span>
               <h4
                 class="mb-0 counter"
                 [CountTo]="history"
@@ -46,7 +46,53 @@
               >
                 {{ history }}
               </h4>
-              <i class="icon-bg" data-feather="user-plus"></i>
+              <i class="icon-bg" data-feather="key"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 col-lg-6">
+      <div class="card o-hidden">
+        <div class="bg-info b-r-4 card-body">
+          <div class="media static-top-widget">
+            <div class="align-self-center text-center">
+              <app-feather-icons [icon]="'percent'"></app-feather-icons>
+            </div>
+            <div class="media-body">
+              <span class="m-0">Active Promos</span>
+              <h4
+                class="mb-0 counter"
+                [CountTo]="history"
+                [from]="0"
+                [duration]="1"
+              >
+                {{ history }}
+              </h4>
+              <i class="icon-bg" data-feather="percent"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 col-lg-6">
+      <div class="card o-hidden">
+        <div class="bg-secondary b-r-4 card-body">
+          <div class="media static-top-widget">
+            <div class="align-self-center text-center">
+              <app-feather-icons [icon]="'dollar-sign'"></app-feather-icons>
+            </div>
+            <div class="media-body">
+              <span class="m-0">Account</span>
+              <h4
+                class="mb-0 counter"
+                [CountTo]="history"
+                [from]="0"
+                [duration]="1"
+              >
+                {{ history }}
+              </h4>
+              <i class="icon-bg" data-feather="dollar-sign"></i>
             </div>
           </div>
         </div>
