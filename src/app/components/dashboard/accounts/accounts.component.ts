@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./accounts.component.scss']
 })
 export class AccountsComponent {
-
+  public wallet: number = 0;
 }

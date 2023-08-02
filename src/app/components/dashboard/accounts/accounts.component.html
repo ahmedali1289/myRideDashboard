@@ -1,1 +1,28 @@
-<p>accounts works!</p>
+<app-breadcrumb [title]="'Accounts'" [items]="['Dashboard']" [active_item]="'Accounts'"></app-breadcrumb>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-xl-3 col-lg-6">
+            <div class="card o-hidden">
+              <div class="bg-primary b-r-4 card-body">
+                  <div class="media static-top-widget">
+                      <div class="align-self-center text-center">
+                        <app-feather-icons [icon]="'pocket'"></app-feather-icons>
+                      </div>
+                      <div class="media-body">
+                        <span class="m-0">Wallet</span>
+                        <h4
+                          class="mb-0 counter"
+                          [CountTo]="wallet"
+                          [from]="0"
+                          [duration]="1"
+                        >
+                          {{ wallet }}
+                        </h4>
+                        <i class="icon-bg" data-feather="pocket"></i>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

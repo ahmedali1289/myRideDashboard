@@ -11,7 +11,10 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpService) {}
 
   public users: number = 0;
-  public history: number = 0;
+  public rides: number = 0;
+  public activepromos: number = 0;
+  public account:number =0;
+  public history:number =0;
 
   ngOnInit() {
     this.loadData();
