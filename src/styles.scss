@@ -102,3 +102,10 @@ body {
   .modal-backdrop {
     z-index: 1040 !important;
 }
+.card .card-header {
+  padding: 20px !important;
+  border-radius: 15px !important;
+}
+.info-home-tab:hover{
+  text-decoration: none;
+}

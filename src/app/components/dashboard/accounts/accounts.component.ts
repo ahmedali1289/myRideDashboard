@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class AccountsComponent {
   public searchInput!: any;
   public users: [] = [];
+  public isFilter: boolean = false;
 }
