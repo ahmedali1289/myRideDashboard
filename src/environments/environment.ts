@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl:'http://localhost/myRide/api/'
+  baseUrl:'https://buybestthemes.com/mobile_app_api/myRide/api/'
 };
 

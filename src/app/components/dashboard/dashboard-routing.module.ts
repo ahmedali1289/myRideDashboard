@@ -9,6 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { NotificationComponent } from './notification/notification.component';
 import { HomeComponent } from './home/home.component';
 import { RideComponent } from './ride/ride.component';
+import { HelpComponent } from './help/help.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: 'privacy_policy',
         component: PrivacyPolicyComponent,
+      },
+      {
+        path: 'help',
+        component: HelpComponent,
       },
       {
         path: 'about_us',

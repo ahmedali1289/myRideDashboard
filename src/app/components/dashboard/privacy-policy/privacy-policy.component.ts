@@ -25,10 +25,10 @@ export class PrivacyPolicyComponent {
 
   async getPrivacy() {
     try {
-      const res: any = await this.http.get('get-privacy', true).toPromise();
-      await this.privacyForm.patchValue({
-        description: res?.data?.[0]?.description,
-      });
+      const res: any = await this.http.get('privacy-get', true).toPromise();
+      // await this.privacyForm.patchValue({
+      //   description: res?.data?.[0]?.description,
+      // });
     } catch (error) {
       console.error('Error fetching users:', error);
     }

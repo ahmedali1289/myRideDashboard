@@ -102,7 +102,9 @@ export class NavService implements OnDestroy {
     { path: '/dashboard/notifications', icon: 'bell', title: 'Notifications', type: 'link' },
     { path: '/dashboard/terms&condition', icon: 'clipboard', title: 'Terms And Condition', type: 'link' },
     { path: '/dashboard/privacy_policy', icon: 'git-pull-request', title: 'Privacy Policy', type: 'link' },
-    { path: '/dashboard/about_us', icon: 'alert-circle', title: 'About Us', type: 'link' },
+    { path: '/dashboard/about_us', icon: 'percent', title: 'Coupons', type: 'link' },
+    { path: '/dashboard/help', icon: 'help-circle', title: 'Help', type: 'link' },
+
     { path: '/dashboard/settings', icon: 'settings', title: 'Settings', type: 'link' },
     
 

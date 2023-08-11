@@ -1,15 +1,15 @@
 <app-breadcrumb
-  [title]="'Users'"
+  [title]="'Helps'"
   [items]="['Dashboard']"
-  [active_item]="'Users'"
-  icon="users"
+  [active_item]="'Helps'"
+  icon="help-circle"
 ></app-breadcrumb>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 btnPadding">
       <div class="card">
         <div class="card-header">
-          <h5>All Rides</h5>
+          <h5>All Help</h5>
         </div>
         <div class="card-body">
           <div class="row">
@@ -32,25 +32,14 @@
                   <thead>
                     <tr>
                       <th scope="col">Id</th>
-                      <th scope="col">Pick Up</th>
-                      <th scope="col">No Of Passenger</th>
-                      <th scope="col">Distance</th>
-                      <th scope="col">Estimated Time</th>
-                      <th scope="col">Estimated Fare</th>
-                      <th scope="col">Service Id</th>
-                      <th scope="col">Card Id</th>
                       <th scope="col">User Id</th>
-                      <th scope="col">Accept Driver Id</th>
-                      <th scope="col">Accept Time</th>
-                      <th scope="col">Cancelled By</th>
-                      <th scope="col">Code</th>
-                      <th scope="col">Status</th>
+                      <th scope="col">Description</th>
                     </tr>
                   </thead>
                   <tbody>
                     <ng-container
                       *ngIf="
-                        (users | filter : searchInput)?.length;
+                        (helps | filter : searchInput)?.length;
                         else noData
                       "
                     >
@@ -58,7 +47,7 @@
                         *ngFor="
                           let i = index;
                           let item;
-                          of: users
+                          of: helps
                             | filter : searchInput
                             | paginate
                               : {
@@ -69,24 +58,8 @@
                         "
                       >
                         <th scope="row">{{ item?.id }}</th>
-                        <td>{{ item?.fname}} {{item?.lname}}</td>
-                        <td>{{ item?.email ? item?.email : "N/A" }}</td>
-                        <td>{{ item?.role ? item?.role : "N/A" }}</td>
-                        <td>
-                          <div
-                            class="toggle d-flex align-items-center w-100 justify-content-center"
-                          >
-                            <input
-                              (change)="stateItem(item, $event)"
-                              class="checkBox"
-                              type="checkbox"
-                              [checked]="
-                                item?.active_status == '1' ? true : false
-                              "
-                              [id]="'user' + i"
-                            /><label [for]="'user' + i"></label>
-                          </div>
-                        </td>
+                        <td>{{ item?.user_id}}</td>
+                        <td>{{ item?.description }}</td>
                         <td
                           class="d-flex justify-content-center align-items-center"
                         >
@@ -100,14 +73,14 @@
                       </tr>
                     </ng-container>
                     <ng-template #noData>
-                      <tr *ngIf="users?.length">
-                        <td colspan="14" class="text-center white">
+                      <tr *ngIf="helps?.length">
+                        <td colspan="5" class="text-center white">
                           No Matching Data Available
                         </td>
                       </tr>
                     </ng-template>
-                    <tr *ngIf="!users?.length">
-                      <td class="text-center white" colspan="14">
+                    <tr *ngIf="!helps?.length">
+                      <td class="text-center white" colspan="5">
                         No data available
                       </td>
                     </tr>
@@ -117,7 +90,7 @@
             </div>
             <div
               class="col-sm-12 d-flex justify-content-end"
-              *ngIf="users?.length"
+              *ngIf="helps?.length"
             >
               <pagination-controls (pageChange)="duePage = $event">
               </pagination-controls>

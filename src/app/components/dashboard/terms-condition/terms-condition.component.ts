@@ -22,7 +22,7 @@ export class TermsConditionComponent {
 
   async getTerms() {
     try {
-      const res: any = await this.http.get('get-term', true).toPromise();
+      const res: any = await this.http.get('term-get', true).toPromise();
       await this.termsForm.patchValue({
         description: res?.data?.[0]?.description,
       });
@@ -39,3 +39,4 @@ export class TermsConditionComponent {
       });
   }
 }
+ 

@@ -81,3 +81,17 @@ body {
       transform: translateY(-50%);
     }
   }
+
+  .checkoutModal {
+    .modal-content {
+      background: var(--theme-deafult);
+      box-shadow: 0 8px 32px 0 #00000033;
+      backdrop-filter: blur(11px);
+      -webkit-backdrop-filter: blur(11px);
+      border-radius: 10px;
+    }
+  }
+
+  .modal-backdrop {
+    z-index: 1040 !important;
+}

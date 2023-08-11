@@ -11,8 +11,10 @@ export class LoginComponent implements OnInit {
   public show: boolean = false;
   public errorMessage: any;
   public loginForm: any = this.fb.group({
-    email: ['admin@gmail.com', [Validators.required, Validators.email]],
-    password: ['123456789', Validators.required],
+    email: ['admin@myride.com', [Validators.required, Validators.email]],
+    password: ['uber1234', Validators.required],
+    role: ['admin ', Validators.required],
+
   });
   constructor(
     private fb: FormBuilder,
@@ -27,11 +29,11 @@ export class LoginComponent implements OnInit {
     this.show = !this.show;
   }
   login() {
-    // this.http.post('auth/login', this.loginForm.value, false).subscribe((res: any) => {
-      // console.log(res, "helloresss");
-      localStorage.setItem('token', JSON.stringify('res?.access_token'))
-    //   localStorage.setItem('user_id', JSON.stringify(res?.user_id))
-    //   this.router.navigate(['/users'])
-    // })
+    this.http.post('auth/login', this.loginForm.value, false).subscribe((res: any) => {
+      console.log(res, "helloresss");
+      localStorage.setItem('token', JSON.stringify(res?.access_token))
+      localStorage.setItem('user_id', JSON.stringify(res?.user_id))
+      this.router.navigate(['/users'])
+    })
   }
 }

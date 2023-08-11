@@ -37,7 +37,7 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
   async logoutUser() {
-    await this.http.post('admin/logout', {}, true).subscribe((res: any) => {
+    await this.http.get('logout', true).subscribe((res: any) => {
       console.log(res);
       localStorage.clear();
       this.router.navigateByUrl('auth/login');

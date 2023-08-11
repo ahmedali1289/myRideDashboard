@@ -15,6 +15,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ImageModule } from 'src/app/image/image.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RideComponent } from './ride/ride.component';
+import { HelpComponent } from './help/help.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -24,6 +25,7 @@ import { RideComponent } from './ride/ride.component';
     NotificationComponent,
     SettingsComponent,
     RideComponent,
+    HelpComponent,
     ],
   imports: [
     CommonModule,
