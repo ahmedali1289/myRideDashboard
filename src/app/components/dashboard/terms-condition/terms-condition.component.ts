@@ -8,7 +8,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
   styleUrls: ['./terms-condition.component.scss'],
 })
 export class TermsConditionComponent {
-  public Editor: any = ClassicEditor;
+  public Editor:any = ClassicEditor;
   public termsForm: any = this.fb.group({
     description: [null, Validators.required],
   });
@@ -24,7 +24,8 @@ export class TermsConditionComponent {
     try {
       const res: any = await this.http.get('term-get', true).toPromise();
       await this.termsForm.patchValue({
-        description: res?.data?.[0]?.description,
+        description: res?.description,
+        // description: res?.data?.[0]?.description,
       });
     } catch (error) {
       console.error('Error fetching users:', error);

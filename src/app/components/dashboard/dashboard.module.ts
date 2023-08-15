@@ -16,6 +16,9 @@ import { ImageModule } from 'src/app/image/image.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RideComponent } from './ride/ride.component';
 import { HelpComponent } from './help/help.component';
+import { PromoComponent } from './promo/promo.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { RideDetailComponent } from './ride-detail/ride-detail.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -26,6 +29,9 @@ import { HelpComponent } from './help/help.component';
     SettingsComponent,
     RideComponent,
     HelpComponent,
+    PromoComponent,
+    AccountsComponent,
+    RideDetailComponent,
     ],
   imports: [
     CommonModule,

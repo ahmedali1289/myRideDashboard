@@ -58,29 +58,25 @@
                         "
                       >
                         <th scope="row">{{ item?.id }}</th>
-                        <td>{{ item?.user_id}}</td>
-                        <td>{{ item?.description }}</td>
+                        <td>{{ item?.user?.fname}}</td>
+                        <td><span [ngbTooltip]="item?.description" placement="top" class="pointer">{{ item?.description | slice:0:50 }}</span></td>
+                        <!-- <td>{{ item?.description }}</td> -->
                         <td
                           class="d-flex justify-content-center align-items-center"
                         >
-                          <button
-                            class="btn btn-primary"
-                            (click)="userDetail(item?.id)"
-                          >
-                            <i class="fa fa-share mlicon"></i>
-                          </button>
+  
                         </td>
                       </tr>
                     </ng-container>
                     <ng-template #noData>
                       <tr *ngIf="helps?.length">
-                        <td colspan="5" class="text-center white">
+                        <td colspan="3" class="text-center white">
                           No Matching Data Available
                         </td>
                       </tr>
                     </ng-template>
                     <tr *ngIf="!helps?.length">
-                      <td class="text-center white" colspan="5">
+                      <td class="text-center white" colspan="3">
                         No data available
                       </td>
                     </tr>

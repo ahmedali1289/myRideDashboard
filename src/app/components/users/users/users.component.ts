@@ -20,7 +20,7 @@ export class UsersComponent {
   ) {}
   userForm: any = this.fb.group({
     id: [null, Validators.required],
-    status: [null, Validators.required],
+    active_status: [null, Validators.required],
   });
   ngOnInit() {
     this.loadData();
@@ -39,18 +39,18 @@ export class UsersComponent {
     }
   }
   async userDetail(id) {
-    this.router.navigateByUrl(`/users/user/${id}`); // Remove the colon from the parameter
+    this.router.navigateByUrl(`/users/user/${id}`);
   }
   async stateItem(event: any, data: any) {
     const { id } = event || {};
     await this.userForm.patchValue({
       id: id,
-      status: data.target.checked ? 1 : 0,
+      active_status: data.target.checked ? 1 : 0,
     });
     await this.save()
   }
   async save(){
-    await this.http.post('user-update',this.userForm.value,true).subscribe((res:any)=>{
+    await this.http.post('updateUser',this.userForm.value,true).subscribe((res:any)=>{
       console.log(res);
       this.getUsers();
     })

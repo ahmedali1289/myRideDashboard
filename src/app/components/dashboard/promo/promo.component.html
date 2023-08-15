@@ -1,15 +1,16 @@
 <app-breadcrumb
-  [title]="'Ride'"
+  [title]="'Promo Codes'"
   [items]="['Dashboard']"
-  [active_item]="'Ride'"
-  icon="rides"
+  [active_item]="'Promo Codes'"
+  icon="coupon"
 ></app-breadcrumb>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 btnPadding">
       <div class="card">
-        <div class="card-header">
-          <h5>All Ride</h5>
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5>All Promo Codes</h5>
+          <button class="btn btn-primary" (click)="open(addModal, 'add')">Add Promo Codes</button>
         </div>
         <div class="card-body">
           <div class="row">
@@ -32,17 +33,16 @@
                   <thead>
                     <tr>
                       <th scope="col">Id</th>
-                      <th scope="col">Pick Up</th>
-                      <th scope="col">Drop Of</th>
-                      <th scope="col">No Of Passenger</th>
+                      <th scope="col">Coupon Number</th>
+                      <th scope="col">Discount</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Actions</th>
+
                     </tr>
                   </thead>
                   <tbody>
                     <ng-container
                       *ngIf="
-                        (rides | filter : searchInput)?.length;
+                        (codes | filter : searchInput)?.length;
                         else noData
                       "
                     >
@@ -50,7 +50,7 @@
                         *ngFor="
                           let i = index;
                           let item;
-                          of: rides
+                          of: codes
                             | filter : searchInput
                             | paginate
                               : {
@@ -61,17 +61,15 @@
                         "
                       >
                         <th scope="row">{{ item?.id }}</th>
-                        <td><span [ngbTooltip]="item?.pick_up" class="pointer">{{ item?.pick_up | slice:0:50 }}</span></td>
-                        <td><span [ngbTooltip]="item?.pick_up" class="pointer">{{ item?.drop_of | slice:0:50 }}</span></td>
+                        <td>{{ item?.coupon_no}}</td>
+                        <td>{{ item?.discount}}</td>
 
-                        
-                        <td>{{ item?.no_of_passenger ? item?.no_of_passenger : "N/A" }}</td>
                         <td>
                           <div
                             class="toggle d-flex align-items-center w-100 justify-content-center"
                           >
                             <input
-                              (change)="stateItem(item, $event)"
+                              (change)="deleteCode(item?.id)"
                               class="checkBox"
                               type="checkbox"
                               [checked]="
@@ -81,26 +79,16 @@
                             /><label [for]="'user' + i"></label>
                           </div>
                         </td>
-                        <td
-                          class="d-flex justify-content-center align-items-center"
-                        >
-                          <button
-                            class="btn btn-primary"
-                            (click)="rideDetail(item?.id)"
-                          >
-                            <i class="fa fa-share mlicon"></i>
-                          </button>
-                        </td>
                       </tr>
                     </ng-container>
                     <ng-template #noData>
-                      <tr *ngIf="rides?.length">
+                      <tr *ngIf="codes?.length">
                         <td colspan="5" class="text-center white">
                           No Matching Data Available
                         </td>
                       </tr>
                     </ng-template>
-                    <tr *ngIf="!rides?.length">
+                    <tr *ngIf="!codes?.length">
                       <td class="text-center white" colspan="5">
                         No data available
                       </td>
@@ -111,7 +99,7 @@
             </div>
             <div
               class="col-sm-12 d-flex justify-content-end"
-              *ngIf="rides?.length"
+              *ngIf="codes?.length"
             >
               <pagination-controls (pageChange)="duePage = $event">
               </pagination-controls>
@@ -123,3 +111,71 @@
     </div>
   </div>
 </div>
+<!-- Edit User -->
+<ng-container>
+    <ng-template #addModal let-modal>
+      <div class="modal-body checkoutModal completed">
+        <button
+          class="btn-close"
+          id="checkoutClose"
+          aria-label="Close"
+          (click)="proceed()"
+        ></button>
+        <h5 style="color: aliceblue;" class="modal-title">{{state ? 'Edit Faq' : 'Add Faq'}}</h5>
+        <form [formGroup]="codeForm" class="form">
+            <div class="row mt-4">
+              <div class="col-lg-12 mt-3">
+                <label for="" class="text-light mb-3">Coupon Number</label>
+                <textarea
+                
+                  formControlName="coupon_no"
+                  type="text"
+                  placeholder="Coupon Number"
+                  class="text-dark w-100"
+                ></textarea>
+                <div
+                  *ngIf="
+                    codeForm.controls.coupon_no.invalid &&
+                    (codeForm.controls.coupon_no.dirty ||
+                      codeForm.controls.coupon_no.touched)
+                  "
+                >
+                  <small class="text-danger">Coupon is required</small>
+                </div>
+              </div>
+
+              <div class="col-lg-12 mt-3">
+                <label for="" class="text-light mb-3">Discount</label>
+                <textarea
+                  formControlName="discount"
+                  type="text"
+                  placeholder="Discount"
+                  class="text-dark w-100"
+                ></textarea>
+                <div
+                  *ngIf="
+                    codeForm.controls.discount.invalid &&
+                    (codeForm.controls.discount.dirty ||
+                      codeForm.controls.discount.touched)
+                  "
+                >
+                  <small class="text-danger">Discount is required</small>
+                </div>
+              </div>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-start">
+        <button
+        class="btn add-btn"
+        [disabled]="codeForm.invalid"
+        (click)="save(true)"
+      >
+        Save
+      </button>
+      <button class="btn cancel-btn" aria-label="Close" (click)="proceed()">
+        Cancel
+      </button>
+      </div>
+    </ng-template>
+  </ng-container>

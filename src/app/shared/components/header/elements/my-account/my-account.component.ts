@@ -11,7 +11,7 @@ export class MyAccountComponent implements OnInit {
   ngOnInit() {
   }
   async logoutUser() {
-    await this.http.post('admin/logout', {}, true).subscribe((res: any) => {
+    await this.http.get('logout', false).subscribe((res: any) => {
       console.log(res);
       localStorage.clear();
       this.router.navigateByUrl('auth/login');

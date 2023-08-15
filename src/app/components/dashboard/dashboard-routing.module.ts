@@ -9,6 +9,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { NotificationComponent } from './notification/notification.component';
 import { HomeComponent } from './home/home.component';
 import { RideComponent } from './ride/ride.component';
+import { PromoComponent } from './promo/promo.component';
+import { AccountsComponent } from './accounts/accounts.component';
 import { HelpComponent } from './help/help.component';
 
 const routes: Routes = [
@@ -46,6 +48,14 @@ const routes: Routes = [
       {
         path: 'ride',
         component: RideComponent,
+      },
+      {
+        path: 'promo',
+        component: PromoComponent,
+      },
+      {
+        path: 'account',
+        component: AccountsComponent,
       },
       {
         path: '**',

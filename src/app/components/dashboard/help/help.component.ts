@@ -27,21 +27,19 @@ export class HelpComponent {
     this.loadData();
   }
   async loadData() {
-    await Promise.all([this.getUsers()]);
+    await Promise.all([this.getHelps()]);
   }
 
-  async getUsers() {
+  async getHelps() {
     try {
-      const res: any = await this.http.get('get-users', true).toPromise();
+      const res: any = await this.http.get('get-help', true).toPromise();
       console.log(res);
-      this.helps = res?.data;
+      this.helps = res?.help;
     } catch (error) {
       console.error('Error fetching users:', error);
     }
   }
-  async userDetail(id) {
-    this.router.navigateByUrl(`/users/user/${id}`); // Remove the colon from the parameter
-  }
+
   async stateItem(event: any, data: any) {
     const { id } = event || {};
     await this.userForm.patchValue({
@@ -53,7 +51,7 @@ export class HelpComponent {
   async save(){
     await this.http.post('user-update',this.userForm.value,true).subscribe((res:any)=>{
       console.log(res);
-      this.getUsers();
+      this.getHelps();
     })
   }
 

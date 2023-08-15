@@ -41,7 +41,7 @@ const routes: Routes = [
   imports: [[RouterModule.forRoot(routes, {
     anchorScrolling: 'enabled',
     scrollPositionRestoration: 'enabled',
-    enableTracing: true 
+    // enableTracing: true 
 })],
 ],
   exports: [RouterModule]
